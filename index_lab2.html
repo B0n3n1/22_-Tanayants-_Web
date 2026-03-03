@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>DEADLOCK - АЛЬФА ТЕСТ | СТАНЬ В ЧИСЛЕ ПЕРВЫХ!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+            background: repeating-linear-gradient(45deg, #ff0000, #ff9900 20px, #ffff00 40px);
+            min-height: 100vh;
+            padding: 10px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 180px 1fr 180px;
+            gap: 15px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .ad-left, .ad-right {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .ad {
+            background: #ff00ff;
+            border: 5px dotted #00ff00;
+            padding: 15px 10px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 2px 2px 0 #000000;
+            transform: rotate(-2deg);
+            box-shadow: 10px 10px 0 rgba(0,0,0,0.5);
+            animation: blink 0.5s infinite;
+            word-break: break-word;
+        }
+
+        .ad-right .ad {
+            transform: rotate(2deg);
+            background: #00ffff;
+            border: 5px dashed #ff0000;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; background: #ff0000; }
+            100% { opacity: 1; }
+        }
+
+        .content {
+            background: rgba(255, 255, 255, 0.9);
+            border: 8px solid #000000;
+            padding: 25px 20px;
+            box-shadow: 15px 15px 0 #ff00ff, 20px 20px 0 #00ffff;
+        }
+
+        h1 {
+            font-size: 48px;
+            text-align: center;
+            color: #ff0000;
+            text-shadow: 3px 3px 0 #ffff00, 6px 6px 0 #0000ff;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            word-break: break-word;
+        }
+
+        .alpha-status {
+            background: #000000;
+            color: #ffcc00;
+            padding: 20px;
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            border: 5px solid #ff00ff;
+            margin-bottom: 30px;
+            transform: scale(1.05);
+            box-shadow: 0 0 30px #ff0000;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1.05); }
+            50% { transform: scale(1.1); background: #ff0000; color: #ffffff; }
+            100% { transform: scale(1.05); }
+        }
+
+        .slogan-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .slogan {
+            background: #ffcc00;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            border-left: 15px solid #ff0000;
+            border-right: 15px solid #0000ff;
+            transform: skewX(-10deg);
+            box-shadow: 5px 5px 0 #00ff00;
+        }
+
+        .slogan:nth-child(even) {
+            transform: skewX(10deg);
+            background: #ff6600;
+            color: white;
+        }
+
+        .reasons-title {
+            font-size: 36px;
+            margin: 40px 0 25px;
+            text-align: center;
+            background: #000000;
+            color: white;
+            padding: 10px;
+            border: 5px solid #ff00ff;
+        }
+
+        .reasons-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .reason {
+            flex: 1 1 200px;
+            min-width: 180px;
+            background: #ff9933;
+            border: 6px ridge #ff0000;
+            padding: 25px 15px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            box-shadow: 0 0 0 5px #ffff00, 10px 10px 0 #0000ff;
+            transition: all 0.3s;
+        }
+
+        .reason:hover {
+            transform: scale(1.2) rotate(5deg);
+            background: #ff0000;
+            color: white;
+        }
+
+        .reason-number {
+            font-size: 60px;
+            display: block;
+            color: #0000ff;
+            text-shadow: 2px 2px 0 #ffffff;
+        }
+
+        .reviews-title {
+            font-size: 36px;
+            margin: 40px 0 25px;
+            text-align: center;
+            background: #ff00ff;
+            color: #ffffff;
+            padding: 10px;
+            border: 5px dotted #00ff00;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .review-card {
+            background: #aaffaa;
+            border: 8px double #ff44aa;
+            padding: 20px;
+            border-radius: 50px 0 50px 0;
+            transform: rotate(1deg);
+            box-shadow: -10px 10px 0 #44aaff;
+        }
+
+        .review-card:nth-child(even) {
+            transform: rotate(-2deg);
+            background: #ffccff;
+        }
+
+        .review-text {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .review-author {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: right;
+            color: #aa00aa;
+            border-top: 2px solid #000000;
+            padding-top: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin: 40px auto 0 auto;  /* auto слева и справа центрирует */
+            background: #000000;
+            color: #ffffff;
+            font-size: 24px;
+            border-top: 10px solid #ff00ff;
+            border-bottom: 10px solid #00ffff;
+            max-width: 1400px;  /* такая же максимальная ширина как у контейнера */
+            width: calc(100% - 20px);  /* учитываем padding body */
+        }
+
+
+        @media (max-width: 320px) {
+            body {
+                padding: 5px;
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .ad-left, .ad-right {
+                display: none;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .alpha-status {
+                font-size: 22px;
+                padding: 10px;
+            }
+
+            .slogan {
+                font-size: 18px;
+                padding: 10px;
+                transform: none;
+            }
+
+            .slogan:nth-child(even) {
+                transform: none;
+            }
+
+            .reasons-title, .reviews-title {
+                font-size: 24px;
+            }
+
+            .reason {
+                flex: 1 1 100%;
+                min-width: auto;
+            }
+
+            .reason-number {
+                font-size: 40px;
+            }
+
+            footer {
+                font-size: 16px;
+                padding: 15px;
+                width: calc(100% - 10px);
+            }
+        }
+
+        @media (min-width: 321px) and (max-width: 768px) {
+            .container {
+                grid-template-columns: 120px 1fr 120px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .slogan {
+                font-size: 22px;
+            }
+        }
+
+        marquee {
+            font-size: 24px;
+            color: red;
+            background: black;
+            padding: 10px;
+            margin: 20px 0;
+        }
+
+        .blink-hard {
+            animation: hard-blink 0.1s infinite;
+        }
+
+        @keyframes hard-blink {
+            0% { color: red; background: blue; }
+            25% { color: blue; background: green; }
+            50% { color: green; background: yellow; }
+            75% { color: yellow; background: red; }
+            100% { color: red; background: blue; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="ad-left">
+            <div class="ad">🔥 ИНВАЙТЫ ТУТ! НЕДОРОГО!</div>
+            <div class="ad">💊 МОДЫ ДЛЯ DEADLOCK</div>
+            <div class="ad">🎰 D.CAS - ПЕРВОЕ КАЗИНО ПО ИГРЕ</div>
+            <div class="ad">📈 ПРОКАЧАЕМ АККАУНТ ДО ЭТЕРНУСА ЗА 1 НЕДЕЛЮ</div>
+        </aside>
+
+        <main class="content">
+            <h1>🔫🕷️ DEADLOCK: АЛЬФА-ТЕСТ 🕷️🔫</h1>
+
+            <div class="alpha-status blink-hard">
+                ⚡ ТЫ В АЛЬФЕ! ТЫ ПЕРВЫЙ! ЛЮДИ ЗАВИДУЮТ! ⚡
+            </div>
+
+            <marquee behavior="alternate" scrollamount="15">🚨 ВНИМАНИЕ! ИГРА БЕСПЛАТНАЯ! АЛЬФА ТЕСТ! ТОЛЬКО ИНВАЙТЫ! 🚨</marquee>
+
+            <div class="slogan-container">
+                <div class="slogan">"АЛЬФА?! ТЫ ОДИН ИЗ ПЕРВЫХ!"</div>
+                <div class="slogan">"ИНВАЙТА НЕТ? ПОЗОР СЕМЬЕ!"</div>
+                <div class="slogan">"DEADLOCK - ИГРА ДЛЯ ИЗБРАННЫХ"</div>
+                <div class="slogan">"БЕСПЛАТНО? ПОЛУЧИ ИНВАЙТ СЕЙЧАС!"</div>
+            </div>
+
+            <h2 class="reasons-title">🔥 ТОП-5 ПРИЧИН ИГРАТЬ В DEADLOCK 🔥</h2>
+
+            <div class="reasons-flex">
+                <div class="reason">
+                    <span class="reason-number">1</span>
+                    ТЫ В АЛЬФЕ! Стань одним из первых!
+                </div>
+                <div class="reason">
+                    <span class="reason-number">2</span>
+                    БЕСПЛАТНО!
+                </div>
+                <div class="reason">
+                    <span class="reason-number">3</span>
+                    ЛУЧШАЯ ИГРА СВОЕГО ЖАНРА
+                </div>
+                <div class="reason">
+                    <span class="reason-number">4</span>
+                    МНОГО КОНТЭНТА!
+                </div>
+                <div class="reason">
+                    <span class="reason-number">5</span>
+                    ИГРАЙ С ДРУЗЬЯМИ, сделай свой экспириэнс веселей
+                </div>
+            </div>
+
+            <h2 class="reviews-title">📢 ОТЗЫВЫ АЛЬФА-ТЕСТЕРОВ 📢</h2>
+
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-text">"Получил инвайт, теперь меня хотят мужчины"</div>
+                    <div class="review-author">— Дима, альфа-тестер</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-text">"Эта игра в альфе лучше, чем моя девушка"</div>
+                    <div class="review-author">— Гоша, задрот</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-text">"Игра свежее, чем моя мертвая бабушка!"</div>
+                    <div class="review-author">— SISYAN, 3000 часов</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-text">"Сыграл в игру с другом, теперь спим в одной кровати! Спасибо Valve!"</div>
+                    <div class="review-author">— Аноним</div>
+                </div>
+            </div>
+
+            <marquee direction="right" scrollamount="10">💀 ИГРА СКОРО ВЫЙДЕТ! А ТЫ ВСЕ ЕЩЁ НЕ С НАМИ! 💀</marquee>
+
+            <footer>
+            <p>© 2026 DEADLOCK FAN CLUB | САЙТ-РЕКЛАМА</p>
+            <p style="font-size: 16px;">ВСЕ ПРАВА ЗАЩИЩЕНЫ</p>
+            <p style="font-size: 12px; color: #999;">Valve не знают о существовании этого сайта (надеюсь)</p>
+            </footer>
+        </main>
+
+        <aside class="ad-right">
+            <div class="ad">💎 КУПЛЮ АККАУНТ!</div>
+            <div class="ad">📧 УЗНАЕШЬ ДАТУ ВЫХОДА!</div>
+            <div class="ad">🎮 ТРЕНИРОВКИ С ПРОФИ(ИЛАРИ) - 5000Р/ЧАС</div>
+            <div class="ad">🔑 ДОСТУП К ИГРЕ</div>
+            <div class="ad">💊 ПРОКАЧКА "DEADLOCK" - БЫСТРЕЕ ЧЕМ ЗА 3 ДНЯ</div>
+        </aside>
+    </div>
+</body>
+</html>
