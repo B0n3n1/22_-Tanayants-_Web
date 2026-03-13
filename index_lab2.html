@@ -9,6 +9,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
         }
         body {
             font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
@@ -16,6 +17,78 @@
             min-height: 100vh;
             padding: 10px;
         }
+        body.dark-theme {
+            background: repeating-linear-gradient(45deg, #2d0a0a, #3d2a0a 20px, #3d3d0a 40px);
+        }
+
+        body.dark-theme .content {
+            background: rgba(30, 30, 30, 0.95);
+            border-color: #ffaa00;
+            color: #f0f0f0;
+        }
+
+        body.dark-theme .ad {
+            background: #4a004a;
+            border-color: #00aa00;
+            color: #ffcc00;
+        }
+
+        body.dark-theme .ad-right .ad {
+            background: #004a4a;
+            border-color: #aa0000;
+        }
+
+        body.dark-theme h1 {
+            color: #ffaa00;
+            text-shadow: 3px 3px 0 #aa5500, 6px 6px 0 #00aaff;
+        }
+
+        body.dark-theme .slogan {
+            background: #553300;
+            color: #ffcc00;
+        }
+
+        body.dark-theme .slogan:nth-child(even) {
+            background: #993300;
+        }
+
+        body.dark-theme .reason {
+            background: #996633;
+            border-color: #ff5500;
+            color: #fff;
+        }
+
+        body.dark-theme .review-card {
+            background: #335533;
+            color: #fff;
+        }
+
+        body.dark-theme .review-card:nth-child(even) {
+            background: #553355;
+        }
+
+        body.dark-theme footer {
+            background: #1a1a1a;
+            border-color: #aa00aa;
+        }
+
+        body.dark-theme .review-item {
+            background: #333;
+            color: #fff;
+            border-color: #ffaa00;
+        }
+
+        body.dark-theme #reviewForm {
+            background: #222;
+            border-color: #ffaa00;
+        }
+
+        body.dark-theme input, body.dark-theme textarea {
+            background: #444;
+            color: #fff;
+            border-color: #ffaa00;
+        }
+
         .main-grid {
             display: grid;
             grid-template-columns: 180px 1fr 180px;
@@ -23,11 +96,13 @@
             max-width: 1400px;
             margin: 0 auto;
         }
+
         .ad-left, .ad-right {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
+
         .ad {
             background: #ff00ff;
             border: 5px dotted #00ff00;
@@ -42,22 +117,26 @@
             animation: blink 0.5s infinite;
             word-break: break-word;
         }
+
         .ad-right .ad {
             transform: rotate(2deg);
             background: #00ffff;
             border: 5px dashed #ff0000;
         }
+
         @keyframes blink {
             0% { opacity: 1; }
             50% { opacity: 0.7; background: #ff0000; }
             100% { opacity: 1; }
         }
+
         .content {
             background: rgba(255, 255, 255, 0.9);
             border: 8px solid #000000;
             padding: 25px 20px;
             box-shadow: 15px 15px 0 #ff00ff, 20px 20px 0 #00ffff;
         }
+
         h1 {
             font-size: 48px;
             text-align: center;
@@ -67,6 +146,36 @@
             line-height: 1.2;
             word-break: break-word;
         }
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 15px 25px;
+            background: #000;
+            color: #fff;
+            border: 3px solid #ff00ff;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 5px 5px 0 #00ffff;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background: #ff00ff;
+            border-color: #00ffff;
+        }
+
+        body.dark-theme .theme-toggle {
+            background: #fff;
+            color: #000;
+            border-color: #00ffff;
+            box-shadow: 5px 5px 0 #ff00ff;
+        }
+
         .alpha-status {
             background: #000000;
             color: #ffcc00;
@@ -80,17 +189,20 @@
             box-shadow: 0 0 30px #ff0000;
             animation: pulse 1s infinite;
         }
+
         @keyframes pulse {
             0% { transform: scale(1.05); }
             50% { transform: scale(1.1); background: #ff0000; color: #ffffff; }
             100% { transform: scale(1.05); }
         }
+
         .slogan-container {
             display: flex;
             flex-direction: column;
             gap: 15px;
             margin: 30px 0;
         }
+
         .slogan {
             background: #ffcc00;
             padding: 20px;
@@ -102,11 +214,13 @@
             transform: skewX(-10deg);
             box-shadow: 5px 5px 0 #00ff00;
         }
+
         .slogan:nth-child(even) {
             transform: skewX(10deg);
             background: #ff6600;
             color: white;
         }
+
         .reasons-title {
             font-size: 36px;
             margin: 40px 0 25px;
@@ -116,6 +230,7 @@
             padding: 10px;
             border: 5px solid #ff00ff;
         }
+
         .reasons-flex {
             display: flex;
             flex-wrap: wrap;
@@ -123,6 +238,7 @@
             justify-content: center;
             margin-bottom: 40px;
         }
+
         .reason {
             flex: 1 1 200px;
             min-width: 180px;
@@ -135,17 +251,20 @@
             box-shadow: 0 0 0 5px #ffff00, 10px 10px 0 #0000ff;
             transition: all 0.3s;
         }
+
         .reason:hover {
             transform: scale(1.2) rotate(5deg);
             background: #ff0000;
             color: white;
         }
+
         .reason-number {
             font-size: 60px;
             display: block;
             color: #0000ff;
             text-shadow: 2px 2px 0 #ffffff;
         }
+
         .reviews-title {
             font-size: 36px;
             margin: 40px 0 25px;
@@ -155,12 +274,14 @@
             padding: 10px;
             border: 5px dotted #00ff00;
         }
+
         .reviews-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 25px;
             margin-bottom: 40px;
         }
+
         .review-card {
             background: #aaffaa;
             border: 8px double #ff44aa;
@@ -169,16 +290,19 @@
             transform: rotate(1deg);
             box-shadow: -10px 10px 0 #44aaff;
         }
+
         .review-card:nth-child(even) {
             transform: rotate(-2deg);
             background: #ffccff;
         }
+
         .review-text {
             font-size: 20px;
             margin-bottom: 15px;
             font-style: italic;
             line-height: 1.4;
         }
+
         .review-author {
             font-size: 18px;
             font-weight: bold;
@@ -186,6 +310,161 @@
             color: #aa00aa;
             border-top: 2px solid #000000;
             padding-top: 10px;
+        }
+        .reviews-feed {
+            margin: 50px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+        }
+        body.dark-theme .reviews-feed {
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .reviews-feed h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-align: center;
+            background: #ff44aa;
+            color: white;
+            padding: 10px;
+            border: 5px solid #00ffff;
+        }
+        #reviewForm {
+            background: #f0f0f0;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border: 3px solid #ff0000;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        body.dark-theme .form-group label {
+            color: #ffaa00;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            border: 3px solid #ff00ff;
+            border-radius: 10px;
+            font-family: inherit;
+        }
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .form-row {
+            display: flex;
+            gap: 20px;
+            align-items: flex-end;
+        }
+        .form-row .form-group {
+            flex: 1;
+        }
+        .image-preview {
+            width: 100px;
+            height: 100px;
+            border: 3px dashed #ff00ff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .image-preview span {
+            color: #999;
+            text-align: center;
+            font-size: 14px;
+        }
+        .submit-btn {
+            background: #00ff00;
+            color: #000;
+            border: 3px solid #ff0000;
+            padding: 15px 40px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 5px 5px 0 #0000ff;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        .submit-btn:hover {
+            transform: scale(1.02);
+            background: #ff0000;
+            color: white;
+        }
+        #reviewsList {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .review-item {
+            background: white;
+            border: 3px solid #ff00ff;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            box-shadow: 5px 5px 0 #00ffff;
+        }
+        .review-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #ffaa00;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .review-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .review-content {
+            flex: 1;
+        }
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .review-name {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ff00ff;
+        }
+        .review-date {
+            color: #999;
+            font-size: 14px;
+        }
+        .review-message {
+            font-size: 18px;
+            line-height: 1.5;
+            color: #333;
+        }
+        body.dark-theme .review-item {
+            background: #333;
+            border-color: #ffaa00;
+        }
+        body.dark-theme .review-message {
+            color: #fff;
         }
         footer {
             text-align: center;
@@ -196,7 +475,6 @@
             font-size: 24px;
             border-top: 10px solid #ff00ff;
             border-bottom: 10px solid #00ffff;
-            width: 100%;
         }
         marquee {
             font-size: 24px;
@@ -239,12 +517,10 @@
                 order: 1;
                 margin-top: 15px;
             }
-
             .content {
                 order: 0;
             }
             .ad {
-                width: auto;
                 flex: 1 1 40%;
                 transform: none;
                 font-size: 14px;
@@ -286,6 +562,12 @@
                 border-right: 10px solid black;
                 width: calc(100% - 20px);
             }
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 10px 15px;
+                font-size: 14px;
+            }
         }
         @media (min-width: 321px) and (max-width: 768px) {
             .main-grid {
@@ -301,6 +583,7 @@
     </style>
 </head>
 <body>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙 ТЁМНАЯ ТЕМА</button>
     <main class="main-grid">
         <aside class="ad-left">
             <div class="ad">🔥 ИНВАЙТЫ ТУТ! НЕДОРОГО!</div>
@@ -348,14 +631,16 @@
                     ИГРАЙ С ДРУЗЬЯМИ, сделай свой экспириэнс веселей
                 </div>
             </div>
+
             <h2 class="reviews-title">📢 ОТЗЫВЫ АЛЬФА-ТЕСТЕРОВ 📢</h2>
+
             <div class="reviews-grid">
                 <div class="review-card">
                     <div class="review-text">"Получил инвайт, теперь меня хотят мужчины"</div>
                     <div class="review-author">— Дима, альфа-тестер</div>
                 </div>
                 <div class="review-card">
-                    <div class="review-text">"Эта игра в альфе лучше, чем моя девушка в прайме (у меня не было девушки)"</div>
+                    <div class="review-text">"Эта игра в альфе лучше, чем моя девушка"</div>
                     <div class="review-author">— Гоша, задрот</div>
                 </div>
                 <div class="review-card">
@@ -367,12 +652,34 @@
                     <div class="review-author">— Аноним</div>
                 </div>
             </div>
+            <div class="reviews-feed">
+                <h2>💬 ЛЕНТА ОТЗЫВОВ</h2>
+                <div id="reviewForm">
+                    <h3 style="margin-bottom: 20px; color: #ff00ff;">Добавить отзыв:</h3> 
+                    <div class="form-group">
+                        <label for="reviewName">Имя:</label>
+                        <input type="text" id="reviewName" placeholder="Введи своё имя..." maxlength="30">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group" style="flex: 2;">
+                            <label for="reviewText">Текст отзыва:</label>
+                            <textarea id="reviewText" placeholder="Напиши, что думаешь об игре..."></textarea>
+                        </div>
+                        <div class="form-group" style="flex: 0;">
+                            <label>Аватар:</label>
+                            <div class="image-preview" id="avatarPreview" onclick="document.getElementById('avatarInput').click()">
+                                <img id="previewImg" src="" style="display: none;">
+                                <span id="previewText">🖼️<br>Нажми<br>для выбора</span>
+                            </div>
+                            <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+                    <button class="submit-btn" onclick="addReview()">➕ ДОБАВИТЬ ОТЗЫВ</button>
+                </div>
+                <div id="reviewsList">
+                </div>
+            </div>
             <marquee direction="right" scrollamount="10">💀 ИГРА СКОРО ВЫЙДЕТ! А ТЫ ВСЕ ЕЩЁ НЕ С НАМИ! 💀</marquee>
-            <footer>
-                <p>© 2026 DEADLOCK FAN CLUB | САЙТ-РЕКЛАМА</p>
-                <p style="font-size: 16px;">ВСЕ ПРАВА ЗАЩИЩЕНЫ</p>
-                <p style="font-size: 12px; color: #999;">Valve не знают о существовании этого сайта (надеюсь)</p>
-            </footer>
         </div>
         <aside class="ad-right">
             <div class="ad">💎 КУПЛЮ АККАУНТ!</div>
@@ -382,5 +689,148 @@
             <div class="ad">💊 ПРОКАЧКА "DEADLOCK" - БЫСТРЕЕ ЧЕМ ЗА 3 ДНЯ</div>
         </aside>
     </main>
+
+    <footer>
+        <p>© 2026 DEADLOCK FAN CLUB | САЙТ-РЕКЛАМА</p>
+        <p style="font-size: 16px;">ВСЕ ПРАВА ЗАЩИЩЕНЫ</p>
+        <p style="font-size: 12px; color: #999;">Valve не знают о существовании этого сайта (надеюсь)</p>
+    </footer>
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const button = document.querySelector('.theme-toggle');
+            if (document.body.classList.contains('dark-theme')) {
+                button.textContent = '☀️ СВЕТЛАЯ ТЕМА';
+            } else {
+                button.textContent = '🌙 ТЁМНАЯ ТЕМА';
+            }
+        }
+        let reviews = [
+            {
+                name: "Геймер_2025",
+                text: "Игра просто бомба! Лучшая альфа, в которую я играл!",
+                date: "2026-03-01",
+                avatar: null
+            },
+            {
+                name: "Кибер_кот",
+                text: "Инвайт искал 3 месяца, но оно того стоило!",
+                date: "2026-03-05",
+                avatar: null
+            },
+            {
+                name: "ZAVTRAK",
+                text: "Баланс хромает, но в альфе норм. Lash имба!",
+                date: "2026-03-10",
+                avatar: null
+            }
+        ];
+        window.onload = function() {
+            renderReviews();
+            setupImagePreview();
+        };
+        function setupImagePreview() {
+            const input = document.getElementById('avatarInput');
+            const previewImg = document.getElementById('previewImg');
+            const previewText = document.getElementById('previewText');
+            input.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        previewImg.src = e.target.result;
+                        previewImg.style.display = 'block';
+                        previewText.style.display = 'none';
+                    }
+                    
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+        }
+        function renderReviews() {
+            const container = document.getElementById('reviewsList');
+            container.innerHTML = '';
+            
+            reviews.forEach(review => {
+                const reviewEl = document.createElement('div');
+                reviewEl.className = 'review-item';
+                
+                const avatarHtml = review.avatar 
+                    ? `<img src="${review.avatar}">` 
+                    : `<span style="font-size: 40px;">👤</span>`;
+                
+                reviewEl.innerHTML = `
+                    <div class="review-avatar">
+                        ${avatarHtml}
+                    </div>
+                    <div class="review-content">
+                        <div class="review-header">
+                            <span class="review-name">${escapeHtml(review.name)}</span>
+                            <span class="review-date">${review.date}</span>
+                        </div>
+                        <div class="review-message">${escapeHtml(review.text)}</div>
+                    </div>
+                `;
+                
+                container.appendChild(reviewEl);
+            });
+        }
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        function addReview() {
+            const nameInput = document.getElementById('reviewName');
+            const textInput = document.getElementById('reviewText');
+            const avatarInput = document.getElementById('avatarInput');
+            const previewImg = document.getElementById('previewImg');
+            
+            let name = nameInput.value.trim();
+            let text = textInput.value.trim();
+            if (name === '' || text === '') {
+                alert('❌ ОШИБКА: Имя и текст отзыва обязательны!');
+                return;
+            }
+            if (name.length > 30) {
+                alert('❌ ОШИБКА: Имя не должно быть длиннее 30 символов!');
+                return;
+            }
+            if (text.length > 500) {
+                alert('❌ ОШИБКА: Текст отзыва слишком длинный (макс. 500 символов)!');
+                return;
+            }
+            const badWords = ['хуй', 'пизда', 'ебать', 'блядь'];
+            for (let word of badWords) {
+                if (text.toLowerCase().includes(word)) {
+                    alert('❌ ОШИБКА: Использованы запрещённые слова!');
+                    return;
+                }
+            }
+            let avatar = null;
+            if (avatarInput.files && avatarInput.files[0]) {
+                avatar = previewImg.src;
+            } else {
+                const randomAvatars = [
+                    '👾', '👽', '🤖', '👻', '💀', '🎃', '😺', '🐶', '🦊', '🐸'
+                ];
+                avatar = randomAvatars[Math.floor(Math.random() * randomAvatars.length)];
+            }
+            const newReview = {
+                name: name,
+                text: text,
+                date: new Date().toISOString().split('T')[0],
+                avatar: avatar
+            };
+            reviews.unshift(newReview);
+            nameInput.value = '';
+            textInput.value = '';
+            avatarInput.value = '';
+            document.getElementById('previewImg').style.display = 'none';
+            document.getElementById('previewText').style.display = 'block';
+            renderReviews();
+            alert('✅ Отзыв успешно добавлен!');
+        }
+    </script>
 </body>
 </html>
