@@ -10,15 +10,12 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
             background: repeating-linear-gradient(45deg, #ff0000, #ff9900 20px, #ffff00 40px);
             min-height: 100vh;
             padding: 10px;
         }
-
-        /* MAIN - теперь родитель для всего */
         .main-grid {
             display: grid;
             grid-template-columns: 180px 1fr 180px;
@@ -26,13 +23,11 @@
             max-width: 1400px;
             margin: 0 auto;
         }
-
         .ad-left, .ad-right {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
-
         .ad {
             background: #ff00ff;
             border: 5px dotted #00ff00;
@@ -47,26 +42,22 @@
             animation: blink 0.5s infinite;
             word-break: break-word;
         }
-
         .ad-right .ad {
             transform: rotate(2deg);
             background: #00ffff;
             border: 5px dashed #ff0000;
         }
-
         @keyframes blink {
             0% { opacity: 1; }
             50% { opacity: 0.7; background: #ff0000; }
             100% { opacity: 1; }
         }
-
         .content {
             background: rgba(255, 255, 255, 0.9);
             border: 8px solid #000000;
             padding: 25px 20px;
             box-shadow: 15px 15px 0 #ff00ff, 20px 20px 0 #00ffff;
         }
-
         h1 {
             font-size: 48px;
             text-align: center;
@@ -76,7 +67,6 @@
             line-height: 1.2;
             word-break: break-word;
         }
-
         .alpha-status {
             background: #000000;
             color: #ffcc00;
@@ -90,20 +80,17 @@
             box-shadow: 0 0 30px #ff0000;
             animation: pulse 1s infinite;
         }
-
         @keyframes pulse {
             0% { transform: scale(1.05); }
             50% { transform: scale(1.1); background: #ff0000; color: #ffffff; }
             100% { transform: scale(1.05); }
         }
-
         .slogan-container {
             display: flex;
             flex-direction: column;
             gap: 15px;
             margin: 30px 0;
         }
-
         .slogan {
             background: #ffcc00;
             padding: 20px;
@@ -115,13 +102,11 @@
             transform: skewX(-10deg);
             box-shadow: 5px 5px 0 #00ff00;
         }
-
         .slogan:nth-child(even) {
             transform: skewX(10deg);
             background: #ff6600;
             color: white;
         }
-
         .reasons-title {
             font-size: 36px;
             margin: 40px 0 25px;
@@ -131,7 +116,6 @@
             padding: 10px;
             border: 5px solid #ff00ff;
         }
-
         .reasons-flex {
             display: flex;
             flex-wrap: wrap;
@@ -139,7 +123,6 @@
             justify-content: center;
             margin-bottom: 40px;
         }
-
         .reason {
             flex: 1 1 200px;
             min-width: 180px;
@@ -152,20 +135,17 @@
             box-shadow: 0 0 0 5px #ffff00, 10px 10px 0 #0000ff;
             transition: all 0.3s;
         }
-
         .reason:hover {
             transform: scale(1.2) rotate(5deg);
             background: #ff0000;
             color: white;
         }
-
         .reason-number {
             font-size: 60px;
             display: block;
             color: #0000ff;
             text-shadow: 2px 2px 0 #ffffff;
         }
-
         .reviews-title {
             font-size: 36px;
             margin: 40px 0 25px;
@@ -175,14 +155,12 @@
             padding: 10px;
             border: 5px dotted #00ff00;
         }
-
         .reviews-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 25px;
             margin-bottom: 40px;
         }
-
         .review-card {
             background: #aaffaa;
             border: 8px double #ff44aa;
@@ -191,19 +169,16 @@
             transform: rotate(1deg);
             box-shadow: -10px 10px 0 #44aaff;
         }
-
         .review-card:nth-child(even) {
             transform: rotate(-2deg);
             background: #ffccff;
         }
-
         .review-text {
             font-size: 20px;
             margin-bottom: 15px;
             font-style: italic;
             line-height: 1.4;
         }
-
         .review-author {
             font-size: 18px;
             font-weight: bold;
@@ -212,7 +187,6 @@
             border-top: 2px solid #000000;
             padding-top: 10px;
         }
-
         footer {
             text-align: center;
             padding: 30px;
@@ -224,7 +198,6 @@
             border-bottom: 10px solid #00ffff;
             width: 100%;
         }
-
         marquee {
             font-size: 24px;
             color: red;
@@ -236,11 +209,9 @@
             width: calc(100% - 40px);
             box-sizing: border-box;
         }
-
         .blink-hard {
             animation: hard-blink 0.1s infinite;
         }
-
         @keyframes hard-blink {
             0% { color: red; background: blue; }
             25% { color: blue; background: green; }
@@ -248,14 +219,11 @@
             75% { color: yellow; background: red; }
             100% { color: red; background: blue; }
         }
-
-        /* МЕДИА-ЗАПРОС ДЛЯ 320px - реклама сверху и снизу */
         @media (max-width: 320px) {
             .main-grid {
                 display: flex;
                 flex-direction: column;
             }
-
             .ad-left, .ad-right {
                 display: flex;
                 flex-direction: row;
@@ -263,67 +231,55 @@
                 justify-content: center;
                 gap: 10px;
             }
-
             .ad-left {
-                order: -1;  /* сверху */
+                order: -1;
                 margin-bottom: 15px;
             }
-
             .ad-right {
-                order: 1;   /* снизу */
+                order: 1;
                 margin-top: 15px;
             }
 
             .content {
                 order: 0;
             }
-
             .ad {
                 width: auto;
                 flex: 1 1 40%;
                 transform: none;
                 font-size: 14px;
                 padding: 10px;
-                animation: none;  /* убираем мигание на мобилках */
+                animation: none;
             }
-
             h1 {
                 font-size: 28px;
             }
-
             .alpha-status {
                 font-size: 22px;
                 padding: 10px;
             }
-
             .slogan {
                 font-size: 18px;
                 padding: 10px;
                 transform: none;
             }
-
             .slogan:nth-child(even) {
                 transform: none;
             }
-
             .reasons-title, .reviews-title {
                 font-size: 24px;
             }
-
             .reason {
                 flex: 1 1 100%;
                 min-width: auto;
             }
-
             .reason-number {
                 font-size: 40px;
             }
-
             footer {
                 font-size: 16px;
                 padding: 15px;
             }
-
             marquee {
                 font-size: 18px;
                 border-left: 10px solid black;
@@ -331,16 +287,13 @@
                 width: calc(100% - 20px);
             }
         }
-
         @media (min-width: 321px) and (max-width: 768px) {
             .main-grid {
                 grid-template-columns: 120px 1fr 120px;
             }
-
             h1 {
                 font-size: 36px;
             }
-
             .slogan {
                 font-size: 22px;
             }
@@ -348,17 +301,13 @@
     </style>
 </head>
 <body>
-    <!-- MAIN - родитель для всего -->
     <main class="main-grid">
-        <!-- Левая реклама -->
         <aside class="ad-left">
             <div class="ad">🔥 ИНВАЙТЫ ТУТ! НЕДОРОГО!</div>
             <div class="ad">💊 МОДЫ ДЛЯ DEADLOCK</div>
             <div class="ad">🎰 D.CAS - ПЕРВОЕ КАЗИНО ПО ИГРЕ</div>
             <div class="ad">📈 ПРОКАЧАЕМ АККАУНТ ДО ЭТЕРНУСА ЗА 1 НЕДЕЛЮ</div>
         </aside>
-
-        <!-- Центральный контент -->
         <div class="content">
             <h1>🔫🕷️ DEADLOCK: АЛЬФА-ТЕСТ 🕷️🔫</h1>
 
@@ -399,9 +348,7 @@
                     ИГРАЙ С ДРУЗЬЯМИ, сделай свой экспириэнс веселей
                 </div>
             </div>
-
             <h2 class="reviews-title">📢 ОТЗЫВЫ АЛЬФА-ТЕСТЕРОВ 📢</h2>
-
             <div class="reviews-grid">
                 <div class="review-card">
                     <div class="review-text">"Получил инвайт, теперь меня хотят мужчины"</div>
@@ -420,17 +367,13 @@
                     <div class="review-author">— Аноним</div>
                 </div>
             </div>
-
             <marquee direction="right" scrollamount="10">💀 ИГРА СКОРО ВЫЙДЕТ! А ТЫ ВСЕ ЕЩЁ НЕ С НАМИ! 💀</marquee>
-
             <footer>
                 <p>© 2026 DEADLOCK FAN CLUB | САЙТ-РЕКЛАМА</p>
                 <p style="font-size: 16px;">ВСЕ ПРАВА ЗАЩИЩЕНЫ</p>
                 <p style="font-size: 12px; color: #999;">Valve не знают о существовании этого сайта (надеюсь)</p>
             </footer>
         </div>
-
-        <!-- Правая реклама -->
         <aside class="ad-right">
             <div class="ad">💎 КУПЛЮ АККАУНТ!</div>
             <div class="ad">📧 УЗНАЕШЬ ДАТУ ВЫХОДА!</div>
