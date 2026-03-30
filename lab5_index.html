@@ -3,26 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Лабораторная №6 - Управление данными</title>
+    <title>Лабораторная №6</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
         }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
+        .container { max-width: 1400px; margin: 0 auto; }
         header {
             background: white;
             border-radius: 15px;
@@ -30,20 +20,13 @@
             margin-bottom: 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-
-        h1 {
-            color: #333;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
+        h1 { text-align: center; color: #333; margin-bottom: 15px; }
         .nav-buttons {
             display: flex;
             gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
         }
-
         .nav-btn {
             padding: 10px 25px;
             border: none;
@@ -52,28 +35,19 @@
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
-            background: #f0f0f0;
+            background: #e0e0e0;
             color: #333;
         }
-
         .nav-btn.active {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
-
-        .nav-btn:hover {
-            transform: translateY(-2px);
-        }
-
         .content-area {
             background: white;
             border-radius: 15px;
             padding: 20px;
             min-height: 500px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-
         .add-btn {
             background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
             color: white;
@@ -84,82 +58,27 @@
             font-weight: bold;
             cursor: pointer;
             margin-bottom: 20px;
-            transition: all 0.3s;
         }
-
-        .add-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(17, 153, 142, 0.4);
-        }
-
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 20px;
         }
-
         .card {
             background: #f8f9fa;
             border-radius: 10px;
             padding: 20px;
             border-left: 4px solid #667eea;
             transition: all 0.3s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .card h3 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 18px;
-        }
-
-        .card p {
-            color: #666;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-
-        .card-meta {
-            font-size: 12px;
-            color: #999;
-            margin-bottom: 15px;
-        }
-
-        .card-actions {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-        }
-
-        .edit-btn, .delete-btn {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        .edit-btn {
-            background: #ffc107;
-            color: #333;
-        }
-
-        .delete-btn {
-            background: #dc3545;
-            color: white;
-        }
-
-        .edit-btn:hover, .delete-btn:hover {
-            transform: scale(1.05);
-        }
-
+        .card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .card h3 { color: #333; margin-bottom: 10px; font-size: 18px; }
+        .card p { color: #666; line-height: 1.5; margin-bottom: 15px; }
+        .card-meta { font-size: 12px; color: #999; margin-bottom: 15px; }
+        .card-actions { display: flex; gap: 10px; justify-content: flex-end; }
+        .edit-btn, .delete-btn { padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; font-weight: bold; }
+        .edit-btn { background: #ffc107; color: #333; }
+        .delete-btn { background: #dc3545; color: white; }
         .modal {
             display: none;
             position: fixed;
@@ -172,114 +91,60 @@
             align-items: center;
             z-index: 1000;
         }
-
-        .modal.active {
-            display: flex;
-        }
-
+        .modal.active { display: flex; }
         .modal-content {
             background: white;
             border-radius: 15px;
             padding: 30px;
             width: 90%;
             max-width: 500px;
-            max-height: 80vh;
-            overflow-y: auto;
         }
-
-        .modal-content h3 {
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #333;
-            font-weight: bold;
-        }
-
-        .form-group input,
-        .form-group textarea {
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-group input, .form-group textarea {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            font-size: 14px;
         }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-
         .modal-buttons {
             display: flex;
             gap: 10px;
             justify-content: flex-end;
             margin-top: 20px;
         }
-
-        .modal-buttons button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .save-btn {
-            background: #28a745;
-            color: white;
-        }
-
-        .cancel-btn {
-            background: #6c757d;
-            color: white;
-        }
-
-        .loader {
-            text-align: center;
-            padding: 50px;
-            font-size: 18px;
-            color: #666;
-        }
-
-        .loader.hidden {
-            display: none;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 50px;
-            color: #999;
-            font-size: 16px;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 30px;
-            color: white;
+        .save-btn { background: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+        .cancel-btn { background: #6c757d; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+        .loader { text-align: center; padding: 50px; font-size: 18px; color: #666; }
+        .loader.hidden { display: none; }
+        .empty-state { text-align: center; padding: 50px; color: #999; }
+        .error { background: #f8d7da; color: #721c24; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: none; }
+        .error.show { display: block; }
+        footer { text-align: center; margin-top: 30px; color: white; font-size: 14px; }
+        .info {
+            background: #e3f2fd;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
             font-size: 14px;
+            color: #1976d2;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>📊 Управление данными</h1>
+            <h1>📡 API</h1>
             <div class="nav-buttons">
                 <button class="nav-btn active" data-type="posts">📝 Посты</button>
-                <button class="nav-btn" data-type="comments">💬 Комментарии</button>
-                <button class="nav-btn" data-type="users">👥 Пользователи</button>
+                <button class="nav-btn" data-type="users">👥 Случайные пользователи</button>
+                <button class="nav-btn" data-type="jokes">😂 Случайные шутки</button>
             </div>
         </header>
 
         <div class="content-area">
+            <div id="info" class="info">✅ Посты сохраняются на сервере MockAPI! Добавленные, отредактированные и удалённые посты будут видны после перезагрузки.</div>
+            <div id="error" class="error"></div>
             <div id="loader" class="loader hidden">⏳ Загрузка...</div>
             <div id="data-container"></div>
         </div>
@@ -291,7 +156,7 @@
 
     <div id="modal" class="modal">
         <div class="modal-content">
-            <h3 id="modal-title">Создать запись</h3>
+            <h3 id="modal-title">Создать пост</h3>
             <form id="modal-form">
                 <div id="form-fields"></div>
                 <div class="modal-buttons">
@@ -303,168 +168,195 @@
     </div>
 
     <script>
-        const API_URL = 'https://jsonplaceholder.typicode.com';
+        const MOCKAPI_URL = 'https://69caaa6cba5984c44bf393d3.mockapi.io/posts';
+        
+        const API_URLS = {
+            posts: MOCKAPI_URL,
+            users: 'https://randomuser.me/api/?results=10',
+            jokes: 'https://official-joke-api.appspot.com/random_ten'
+        };
+
         let currentType = 'posts';
         let currentData = [];
         let editingItem = null;
 
-        const russianPosts = [
-            { id: 1, title: 'Веб-программирование', body: 'Сегодня начали изучать HTML и CSS. Очень интересно, но много новой информации.', userId: 1 },
-            { id: 2, title: 'Мой первый сайт', body: 'Сверстал свою первую страницу! Пока просто, но я горжусь собой.', userId: 1 },
-            { id: 3, title: 'JavaScript - это сложно', body: 'Начал изучать JavaScript. Функции и переменные пока непонятны, но буду разбираться.', userId: 2 },
-            { id: 4, title: 'Новое начало', body: 'Сделал карточную игру на классах. Получилось круто!', userId: 2 },
-            { id: 5, title: 'API', body: 'Узнал, как работать с API. Теперь могу многое)).', userId: 3 }
-        ];
-
-        const russianComments = [
-            { id: 1, name: 'Алексей', email: 'alex@mail.ru', body: 'Отличная статья! Очень помогло разобраться.', postId: 1 },
-            { id: 2, name: 'Мария', email: 'maria@mail.ru', body: 'Спасибо, жду продолжения!', postId: 1 },
-            { id: 3, name: 'Дмитрий', email: 'dima@mail.ru', body: 'JavaScript действительно сложный, но со временем привыкаешь.', postId: 3 },
-            { id: 4, name: 'Елена', email: 'elena@mail.ru', body: 'Поздравляю с первой страницей!', postId: 2 },
-            { id: 5, name: 'Сергей', email: 'sergey@mail.ru', body: 'API - это мощный инструмент, дальше будет ещё интереснее.', postId: 5 }
-        ];
-
-        const russianUsers = [
-            { id: 1, name: 'Иван Петров', username: 'ivan_p', email: 'ivan@mail.ru', phone: '+7 (999) 123-45-67', website: 'ivan.ru' },
-            { id: 2, name: 'Мария Сидорова', username: 'masha_s', email: 'masha@mail.ru', phone: '+7 (999) 234-56-78', website: 'masha.ru' },
-            { id: 3, name: 'Дмитрий Смирнов', username: 'dima_s', email: 'dima@mail.ru', phone: '+7 (999) 345-67-89', website: 'dima.ru' }
-        ];
-
-        function loadFromStorage() {
-            const posts = localStorage.getItem('my_posts');
-            const comments = localStorage.getItem('my_comments');
-            const users = localStorage.getItem('my_users');
-
-            if (!posts) {
-                localStorage.setItem('my_posts', JSON.stringify(russianPosts));
+        function showLoader() { document.getElementById('loader').classList.remove('hidden'); }
+        function hideLoader() { document.getElementById('loader').classList.add('hidden'); }
+        function showError(msg) {
+            const el = document.getElementById('error');
+            el.textContent = msg;
+            el.classList.add('show');
+            setTimeout(() => el.classList.remove('show'), 5000);
+        }
+        function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, function(m) { return m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;'; }); }
+        async function apiRequest(url, method = 'GET', data = null) {
+            const options = { 
+                method, 
+                headers: { 'Content-Type': 'application/json' } 
+            };
+            if (data && (method === 'POST' || method === 'PUT')) {
+                options.body = JSON.stringify(data);
             }
-            if (!comments) {
-                localStorage.setItem('my_comments', JSON.stringify(russianComments));
-            }
-            if (!users) {
-                localStorage.setItem('my_users', JSON.stringify(russianUsers));
-            }
+            const response = await fetch(url, options);
+            if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            if (method === 'DELETE') return { success: true };
+            return await response.json();
         }
 
-        function saveToStorage(type, data) {
-            localStorage.setItem(`my_${type}`, JSON.stringify(data));
-        }
-
-        function getDataFromStorage(type) {
-            const data = localStorage.getItem(`my_${type}`);
-            return data ? JSON.parse(data) : [];
-        }
-
-        async function fetchRealData(type) {
+        async function loadPosts() {
             try {
-                const response = await fetch(`${API_URL}/${type}`);
-                const data = await response.json();
-                return data.slice(0, 10);
+                const data = await apiRequest(API_URLS.posts, 'GET');
+                return data;
             } catch (error) {
-                console.error('Ошибка загрузки из API:', error);
+                console.error('Ошибка загрузки постов:', error);
                 return [];
+            }
+        }
+
+        async function createPost(data) {
+            return await apiRequest(API_URLS.posts, 'POST', data);
+        }
+
+        async function updatePost(id, data) {
+            return await apiRequest(`${API_URLS.posts}/${id}`, 'PUT', data);
+        }
+
+        async function deletePost(id) {
+            return await apiRequest(`${API_URLS.posts}/${id}`, 'DELETE');
+        }
+
+        async function loadUsers() {
+            const response = await fetch(API_URLS.users);
+            const data = await response.json();
+            return data.results;
+        }
+
+        async function loadJokes() {
+            const response = await fetch(API_URLS.jokes);
+            const data = await response.json();
+            return data;
+        }
+
+        async function loadData() {
+            showLoader();
+            document.getElementById('error').classList.remove('show');
+            
+            try {
+                if (currentType === 'posts') {
+                    currentData = await loadPosts();
+                } else if (currentType === 'users') {
+                    currentData = await loadUsers();
+                } else if (currentType === 'jokes') {
+                    currentData = await loadJokes();
+                }
+                render();
+            } catch (error) {
+                console.error('Ошибка:', error);
+                showError('Ошибка загрузки: ' + error.message);
+                document.getElementById('data-container').innerHTML = '<div class="empty-state">❌ Не удалось загрузить данные. Проверьте настройки API.</div>';
+            } finally {
+                hideLoader();
             }
         }
 
         function render() {
             const container = document.getElementById('data-container');
-            const data = getDataFromStorage(currentType);
             
-            if (data.length === 0) {
-                container.innerHTML = '<div class="empty-state">📭 Нет данных. Нажмите "Создать" чтобы добавить.</div>';
+            if (!currentData || currentData.length === 0) {
+                if (currentType === 'posts') {
+                    container.innerHTML = '<button class="add-btn" onclick="openCreateModal()">➕ Создать первый пост</button><div class="empty-state">📭 Нет постов. Создайте первый!</div>';
+                } else {
+                    container.innerHTML = '<div class="empty-state">📭 Нет данных</div>';
+                }
                 return;
             }
 
-            let html = '<button class="add-btn" onclick="openCreateModal()">➕ Создать</button>';
+            let html = '';
+            
+            if (currentType === 'posts') {
+                html += '<button class="add-btn" onclick="openCreateModal()">➕ Создать пост</button>';
+            }
+            
             html += '<div class="cards-grid">';
             
-            data.forEach(item => {
-                if (currentType === 'posts') {
+            if (currentType === 'posts') {
+                currentData.forEach(post => {
                     html += `
                         <div class="card">
-                            <h3>${escapeHtml(item.title)}</h3>
-                            <p>${escapeHtml(item.body)}</p>
-                            <div class="card-meta">👤 Автор: ${item.userId}</div>
+                            <h3>${escapeHtml(post.title)}</h3>
+                            <p>${escapeHtml(post.body)}</p>
+                            <div class="card-meta">👤 Автор ID: ${post.userId || 1} | 🆔 ID: ${post.id}</div>
                             <div class="card-actions">
-                                <button class="edit-btn" onclick="openEditModal(${item.id})">✏️ Редактировать</button>
-                                <button class="delete-btn" onclick="deleteItem(${item.id})">🗑️ Удалить</button>
+                                <button class="edit-btn" onclick="openEditModal(${post.id})">✏️ Редактировать</button>
+                                <button class="delete-btn" onclick="handleDelete(${post.id})">🗑️ Удалить</button>
                             </div>
                         </div>
                     `;
-                } else if (currentType === 'comments') {
+                });
+            } 
+            else if (currentType === 'users') {
+                currentData.forEach(user => {
                     html += `
                         <div class="card">
-                            <h3>${escapeHtml(item.name)}</h3>
-                            <p>${escapeHtml(item.body)}</p>
-                            <div class="card-meta">📧 ${escapeHtml(item.email)} | 📌 К посту #${item.postId}</div>
-                            <div class="card-actions">
-                                <button class="edit-btn" onclick="openEditModal(${item.id})">✏️ Редактировать</button>
-                                <button class="delete-btn" onclick="deleteItem(${item.id})">🗑️ Удалить</button>
-                            </div>
+                            <h3>${escapeHtml(user.name?.first)} ${escapeHtml(user.name?.last)}</h3>
+                            <p><strong>👤 Gender:</strong> ${user.gender}<br>
+                            <strong>📧 Email:</strong> ${user.email}<br>
+                            <strong>📞 Phone:</strong> ${user.phone}<br>
+                            <strong>🌍 Country:</strong> ${user.location?.country}</p>
+                            <div class="card-meta">🔗 ${user.login?.username}</div>
                         </div>
                     `;
-                } else if (currentType === 'users') {
+                });
+            } 
+            else if (currentType === 'jokes') {
+                currentData.forEach(joke => {
                     html += `
                         <div class="card">
-                            <h3>${escapeHtml(item.name)}</h3>
-                            <p><strong>👤 Логин:</strong> ${escapeHtml(item.username)}<br>
-                            <strong>📧 Email:</strong> ${escapeHtml(item.email)}<br>
-                            <strong>📞 Телефон:</strong> ${escapeHtml(item.phone || '—')}<br>
-                            <strong>🌐 Сайт:</strong> ${escapeHtml(item.website || '—')}</p>
-                            <div class="card-actions">
-                                <button class="edit-btn" onclick="openEditModal(${item.id})">✏️ Редактировать</button>
-                                <button class="delete-btn" onclick="deleteItem(${item.id})">🗑️ Удалить</button>
-                            </div>
+                            <h3>😂 ${escapeHtml(joke.setup)}</h3>
+                            <p><strong>${escapeHtml(joke.punchline)}</strong></p>
+                            <div class="card-meta">📌 Type: ${joke.type || 'general'}</div>
                         </div>
                     `;
-                }
-            });
+                });
+            }
             
             html += '</div>';
             container.innerHTML = html;
         }
 
-        function createItem(data) {
-            const items = getDataFromStorage(currentType);
-            const newId = items.length > 0 ? Math.max(...items.map(i => i.id)) + 1 : 1;
-            const newItem = { id: newId, ...data };
-            items.push(newItem);
-            saveToStorage(currentType, items);
-            render();
-        }
-
-        function updateItem(id, data) {
-            const items = getDataFromStorage(currentType);
-            const index = items.findIndex(i => i.id === id);
-            if (index !== -1) {
-                items[index] = { ...items[index], ...data, id: items[index].id };
-                saveToStorage(currentType, items);
-                render();
-            }
-        }
-
-        function deleteItem(id) {
-            if (confirm('Удалить эту запись?')) {
-                const items = getDataFromStorage(currentType);
-                const filtered = items.filter(i => i.id !== id);
-                saveToStorage(currentType, filtered);
-                render();
+        async function handleDelete(id) {
+            if (!confirm('Удалить этот пост? Данные удалятся с сервера!')) return;
+            showLoader();
+            try {
+                await deletePost(id);
+                await loadData();
+            } catch (error) {
+                showError('Ошибка удаления: ' + error.message);
+            } finally {
+                hideLoader();
             }
         }
 
         function openCreateModal() {
             editingItem = null;
-            document.getElementById('modal-title').textContent = `➕ Создать ${getTypeName()}`;
-            document.getElementById('form-fields').innerHTML = getFormFields();
+            document.getElementById('modal-title').textContent = '➕ Создать пост';
+            document.getElementById('form-fields').innerHTML = `
+                <div class="form-group"><label>Заголовок *</label><input type="text" id="post-title" required></div>
+                <div class="form-group"><label>Содержание *</label><textarea id="post-body" rows="4" required></textarea></div>
+                <div class="form-group"><label>ID автора</label><input type="number" id="post-userId" value="1"></div>
+            `;
             document.getElementById('modal').classList.add('active');
         }
 
         function openEditModal(id) {
-            const items = getDataFromStorage(currentType);
-            editingItem = items.find(i => i.id === id);
+            editingItem = currentData.find(p => p.id === id);
             if (editingItem) {
-                document.getElementById('modal-title').textContent = `✏️ Редактировать ${getTypeName()}`;
-                document.getElementById('form-fields').innerHTML = getFormFields(editingItem);
+                document.getElementById('modal-title').textContent = '✏️ Редактировать пост';
+                document.getElementById('form-fields').innerHTML = `
+                    <div class="form-group"><label>Заголовок *</label><input type="text" id="post-title" value="${escapeHtml(editingItem.title)}" required></div>
+                    <div class="form-group"><label>Содержание *</label><textarea id="post-body" rows="4" required>${escapeHtml(editingItem.body)}</textarea></div>
+                    <div class="form-group"><label>ID автора</label><input type="number" id="post-userId" value="${editingItem.userId || 1}"></div>
+                `;
                 document.getElementById('modal').classList.add('active');
             }
         }
@@ -474,133 +366,34 @@
             editingItem = null;
         }
 
-        function getFormFields(existing = null) {
-            if (currentType === 'posts') {
-                return `
-                    <div class="form-group">
-                        <label>Заголовок *</label>
-                        <input type="text" id="post-title" value="${escapeHtml(existing?.title || '')}" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Содержание *</label>
-                        <textarea id="post-body" rows="4" required>${escapeHtml(existing?.body || '')}</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>ID автора (1-10)</label>
-                        <input type="number" id="post-userId" value="${existing?.userId || 1}" min="1" max="10">
-                    </div>
-                `;
-            } else if (currentType === 'comments') {
-                return `
-                    <div class="form-group">
-                        <label>Имя *</label>
-                        <input type="text" id="comment-name" value="${escapeHtml(existing?.name || '')}" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email *</label>
-                        <input type="email" id="comment-email" value="${escapeHtml(existing?.email || '')}" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Текст комментария *</label>
-                        <textarea id="comment-body" rows="4" required>${escapeHtml(existing?.body || '')}</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>ID поста</label>
-                        <input type="number" id="comment-postId" value="${existing?.postId || 1}" min="1">
-                    </div>
-                `;
-            } else {
-                return `
-                    <div class="form-group">
-                        <label>Имя *</label>
-                        <input type="text" id="user-name" value="${escapeHtml(existing?.name || '')}" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Логин *</label>
-                        <input type="text" id="user-username" value="${escapeHtml(existing?.username || '')}" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email *</label>
-                        <input type="email" id="user-email" value="${escapeHtml(existing?.email || '')}" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Телефон</label>
-                        <input type="text" id="user-phone" value="${escapeHtml(existing?.phone || '')}">
-                    </div>
-                    <div class="form-group">
-                        <label>Сайт</label>
-                        <input type="text" id="user-website" value="${escapeHtml(existing?.website || '')}">
-                    </div>
-                `;
-            }
-        }
-
-        function saveModal() {
-            let data = {};
+        async function savePost() {
+            const title = document.getElementById('post-title').value;
+            const body = document.getElementById('post-body').value;
             
-            if (currentType === 'posts') {
-                data = {
-                    title: document.getElementById('post-title').value,
-                    body: document.getElementById('post-body').value,
-                    userId: parseInt(document.getElementById('post-userId').value) || 1
-                };
-            } else if (currentType === 'comments') {
-                data = {
-                    name: document.getElementById('comment-name').value,
-                    email: document.getElementById('comment-email').value,
-                    body: document.getElementById('comment-body').value,
-                    postId: parseInt(document.getElementById('comment-postId').value) || 1
-                };
-            } else {
-                data = {
-                    name: document.getElementById('user-name').value,
-                    username: document.getElementById('user-username').value,
-                    email: document.getElementById('user-email').value,
-                    phone: document.getElementById('user-phone').value,
-                    website: document.getElementById('user-website').value
-                };
-            }
-
-            if (editingItem) {
-                updateItem(editingItem.id, data);
-            } else {
-                createItem(data);
+            if (!title || !body) {
+                showError('Заполните заголовок и содержание');
+                return;
             }
             
-            closeModal();
-        }
-
-        function getTypeName() {
-            const names = { posts: 'пост', comments: 'комментарий', users: 'пользователя' };
-            return names[currentType];
-        }
-
-        function escapeHtml(str) {
-            if (!str) return '';
-            return str.replace(/[&<>]/g, function(m) {
-                if (m === '&') return '&amp;';
-                if (m === '<') return '&lt;';
-                if (m === '>') return '&gt;';
-                return m;
-            });
-        }
-
-        async function init() {
-            loadFromStorage();
-            render();
+            const data = {
+                title: title,
+                body: body,
+                userId: parseInt(document.getElementById('post-userId').value) || 1
+            };
             
-            const posts = getDataFromStorage('posts');
-            if (posts.length === 0) {
-                const loader = document.getElementById('loader');
-                loader.classList.remove('hidden');
-                
-                const apiPosts = await fetchRealData('posts');
-                if (apiPosts.length > 0) {
-                    saveToStorage('posts', apiPosts);
+            showLoader();
+            try {
+                if (editingItem) {
+                    await updatePost(editingItem.id, data);
+                } else {
+                    await createPost(data);
                 }
-                
-                loader.classList.add('hidden');
-                render();
+                await loadData();
+                closeModal();
+            } catch (error) {
+                showError('Ошибка сохранения: ' + error.message);
+            } finally {
+                hideLoader();
             }
         }
 
@@ -609,15 +402,15 @@
                 document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 currentType = btn.dataset.type;
-                render();
+                loadData();
             });
         });
 
         document.getElementById('modal-form').addEventListener('submit', (e) => {
             e.preventDefault();
-            saveModal();
+            savePost();
         });
-        init();
+        loadData();
     </script>
 </body>
 </html>
